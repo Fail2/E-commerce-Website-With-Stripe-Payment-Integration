@@ -28,11 +28,11 @@ PROJECT_TITLE = "Project Title"
 SECRET_KEY = 'django-insecure-rj#-z^kx3j+1ay397otg6j8m_8#v^$^$jys6&41vy^&6le)ezc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
+ALLOWED_HOSTS =  ['e-commerce-website-f8gs.onrender.com']
 
-CSRF_TRUSTED_ORIGINS = [ 'https://*' ]
+CSRF_TRUSTED_ORIGINS = ['https://e-commerce-website-f8gs.onrender.com']
 
 
 # Application definition
