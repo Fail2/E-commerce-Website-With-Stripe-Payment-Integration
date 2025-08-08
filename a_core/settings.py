@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+from environ import Env
+env= Env()
+env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -49,6 +53,7 @@ INSTALLED_APPS = [
     # My apps
     'a_home',
     'a_users',
+    'a_stripe',
     
     # Third party
     'django_browser_reload',
@@ -90,6 +95,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'a_home.cprocs.project_title',
+                'a_stripe.context_processors.cart',
             ],
         },
     },
@@ -153,6 +159,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 
+BASE_URL = 'http://localhost:8000'
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_LOGIN_METHODS = {'email', 'username'}
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
+
+
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY_TEST', default='secret')
+STRIPE_WEBHOOK_SECRET = env('STRIPE_WEBHOOK_SECRET', default='webhook')
+CART_SESSION_ID = 'cart'
+SESSION_COOKIE_AGE = 60 * 60 * 24  # 1 day
